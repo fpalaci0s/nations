@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block titulo %}
+    Login
+{% endblock %}
+
+{% block contenido %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2>Iniciar sesión</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.as_p }}
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+                        </form>
+                        <div class="mt-3 text-center">
+                            <p>¿No tienes una cuenta? <a href="{% url 'signup' %}" class="btn btn-link">Regístrate aquí</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

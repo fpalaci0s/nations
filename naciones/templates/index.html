@@ -1,0 +1,135 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block titulo %}
+    Mi Nación
+{% endblock %}
+
+{% block contenido %}
+    <div class="container mt-5">
+        {% if user.is_authenticated %}
+            <!-- Encabezado -->
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 fw-bold text-primary">🌍 Mi Nación</h1>
+                    <p class="lead text-muted">Bienvenido, <strong>{{ user.username }}</strong></p>
+                </div>
+            </div>
+
+            <!-- Sección de recursos y tiempo -->
+            <div class="row g-4">
+                <!-- Recursos -->
+                <div class="col-md-6">
+                    <div class="card shadow border-0">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0">📦 Recursos</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 text-start">🌾 Comida:</div>
+                                <div class="col-6 text-end"><span class="fw-bold">0</span></div>
+                                <div class="col-6 text-start">💎 Cristales:</div>
+                                <div class="col-6 text-end"><span class="fw-bold">0</span></div>
+                                <div class="col-6 text-start">💰 Oro:</div>
+                                <div class="col-6 text-end"><span class="fw-bold">0</span></div>
+                                <div class="col-6 text-start">🌲 Madera:</div>
+                                <div class="col-6 text-end"><span class="fw-bold">0</span></div>
+                                <div class="col-6 text-start">🪨 Piedra:</div>
+                                <div class="col-6 text-end"><span class="fw-bold">0</span></div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-outline-secondary">
+                                Abrir gestor de edificios 🏠
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tiempo -->
+                <div class="col-md-6">
+                    <div class="card shadow border-0">
+                        <div class="card-header bg-success text-white">
+                            <h4 class="mb-0">⏰ Tiempo</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="display-5 fw-bold">00:00</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-outline-primary">
+                                Ver árbol de tecnología 👁️
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de cerrar sesión -->
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger px-4 py-2">
+                            Cerrar sesión
+                        </button>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+<!-- Contenido para usuarios no autenticados -->
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4">
+                        <img src="{% static 'img/nacion.png' %}" 
+                            alt="Imagen de bienvenida" 
+                            class="img-fluid rounded shadow">
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-start">
+                        <h1 class="display-4 fw-bold text-primary">Construye tu Nación</h1>
+                        <p class="lead text-muted mt-3">
+                            Únete a un emocionante mundo de estrategia y creatividad. 
+                            Desarrolla tu nación, gestiona recursos y compite para ser el mejor líder.
+                        </p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
+                            <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4 me-md-2">
+                                Iniciar sesión
+                            </a>
+                            <a href="{% url 'signup' %}" class="btn btn-outline-secondary btn-lg px-4">
+                                Registrarse
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row mt-5">
+                    <div class="col-12 text-center">
+                        <h2 class="fw-bold">Empieza a jugar ya</h2>
+                    </div>
+                </div>
+                <div class="row mt-4 g-4">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fw-bold">🌍 Expande tu territorio</h5>
+                                <p class="card-text text-muted">Explora y conquista nuevos territorios para tu nación.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fw-bold">⚒️ Administra recursos</h5>
+                                <p class="card-text text-muted">Gestiona comida, oro, madera y más para crecer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fw-bold">👥 Alianzas estratégicas</h5>
+                                <p class="card-text text-muted">Forma equipos y colabora para dominar el juego.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    {% endblock %}
