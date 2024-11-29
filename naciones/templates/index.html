@@ -26,19 +26,34 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6 text-start">🌾 Comida:</div>
-                                <div class="col-6 text-end"><span class="fw-bold">0</span></div>
-                                <div class="col-6 text-start">💎 Cristales:</div>
-                                <div class="col-6 text-end"><span class="fw-bold">0</span></div>
-                                <div class="col-6 text-start">💰 Oro:</div>
-                                <div class="col-6 text-end"><span class="fw-bold">0</span></div>
+                                <div class="col-6 text-end">
+                                    <span class="fw-bold" id="food-resource">0</span>
+                                    <button class="btn btn-link" onclick="updateResource('food')">Actualizar</button>
+                                </div>
+                                <div class="col-6 text-start">💧 Agua:</div>
+                                <div class="col-6 text-end">
+                                    <span class="fw-bold" id="water-resource">0</span>
+                                    <button class="btn btn-link" onclick="updateResource('water')">Actualizar</button>
+                                </div>
+                                <div class="col-6 text-start">💰 Dinero:</div>
+                                <div class="col-6 text-end">
+                                    <span class="fw-bold" id="money-resource">0</span>
+                                    <button class="btn btn-link" onclick="updateResource('money')">Actualizar</button>
+                                </div>
                                 <div class="col-6 text-start">🌲 Madera:</div>
-                                <div class="col-6 text-end"><span class="fw-bold">0</span></div>
+                                <div class="col-6 text-end">
+                                    <span class="fw-bold" id="wood-resource">0</span>
+                                    <button class="btn btn-link" onclick="updateResource('wood')">Actualizar</button>
+                                </div>
                                 <div class="col-6 text-start">🪨 Piedra:</div>
-                                <div class="col-6 text-end"><span class="fw-bold">0</span></div>
+                                <div class="col-6 text-end">
+                                    <span class="fw-bold" id="stone-resource">0</span>
+                                    <button class="btn btn-link" onclick="updateResource('stone')">Actualizar</button>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer text-center">
-                            <button class="btn btn-outline-secondary">
+                            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#buildingModal">
                                 Abrir gestor de edificios 🏠
                             </button>
                         </div>
@@ -52,14 +67,46 @@
                             <h4 class="mb-0">⏰ Turnos </h4>
                         </div>
                         <div class="card-body text-center">
-                            <button class="btn btn-outline-secondary">
+                            <button class="btn btn-outline-secondary" onclick="passTurn()">
                                 Pasar Turno 🔄
                             </button>
                         </div>
                         <div class="card-footer text-center">
-                            <button class="btn btn-outline-primary">
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#techTreeModal">
                                 Ver árbol de tecnología 👁️
                             </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de gestor de edificios -->
+            <div class="modal fade" id="buildingModal" tabindex="-1" aria-labelledby="buildingModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="buildingModalLabel">Gestor de Edificios</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Contenido del gestor de edificios -->
+                            Aquí va el contenido de tu gestor de edificios.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal del árbol de tecnología -->
+            <div class="modal fade" id="techTreeModal" tabindex="-1" aria-labelledby="techTreeModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="techTreeModalLabel">Árbol de Tecnología</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Contenido del árbol de tecnología -->
+                            Aquí va el contenido del árbol de tecnología.
                         </div>
                     </div>
                 </div>
@@ -77,61 +124,76 @@
                 </div>
             </div>
         {% else %}
-<!-- Contenido para usuarios no autenticados -->
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mb-4">
-                        <img src="{% static 'img/nacion.png' %}" 
-                            alt="Imagen de bienvenida" 
-                            class="img-fluid rounded shadow">
+            <!-- Contenido para usuarios no autenticados -->
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                    <img src="{% static 'img/nacion.png' %}" 
+                        alt="Imagen de bienvenida" 
+                        class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6 text-center text-lg-start">
+                    <h1 class="display-4 fw-bold text-primary">Construye tu Nación</h1>
+                    <p class="lead text-muted mt-3">
+                        Únete a un emocionante mundo de estrategia y creatividad. 
+                        Desarrolla tu nación, gestiona recursos y compite para ser el mejor líder.
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
+                        <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4 me-md-2">
+                            Iniciar sesión
+                        </a>
+                        <a href="{% url 'signup' %}" class="btn btn-outline-secondary btn-lg px-4">
+                            Registrarse
+                        </a>
                     </div>
-                    <div class="col-lg-6 text-center text-lg-start">
-                        <h1 class="display-4 fw-bold text-primary">Construye tu Nación</h1>
-                        <p class="lead text-muted mt-3">
-                            Únete a un emocionante mundo de estrategia y creatividad. 
-                            Desarrolla tu nación, gestiona recursos y compite para ser el mejor líder.
-                        </p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
-                            <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4 me-md-2">
-                                Iniciar sesión
-                            </a>
-                            <a href="{% url 'signup' %}" class="btn btn-outline-secondary btn-lg px-4">
-                                Registrarse
-                            </a>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <h2 class="fw-bold">Empieza a jugar ya</h2>
+                </div>
+            </div>
+            <div class="row mt-4 g-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">🌍 Expande tu territorio</h5>
+                            <p class="card-text text-muted">Explora y conquista nuevos territorios para tu nación.</p>
                         </div>
                     </div>
                 </div>
-    
-                <div class="row mt-5">
-                    <div class="col-12 text-center">
-                        <h2 class="fw-bold">Empieza a jugar ya</h2>
-                    </div>
-                </div>
-                <div class="row mt-4 g-4">
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow">
-                            <div class="card-body text-center">
-                                <h5 class="card-title fw-bold">🌍 Expande tu territorio</h5>
-                                <p class="card-text text-muted">Explora y conquista nuevos territorios para tu nación.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow">
-                            <div class="card-body text-center">
-                                <h5 class="card-title fw-bold">⚒️ Administra recursos</h5>
-                                <p class="card-text text-muted">Gestiona comida, oro, madera y más para crecer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow">
-                            <div class="card-body text-center">
-                                <h5 class="card-title fw-bold">👥 Alianzas estratégicas</h5>
-                                <p class="card-text text-muted">Forma equipos y colabora para dominar el juego.</p>
-                            </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">⚒️ Administra recursos</h5>
+                            <p class="card-text text-muted">Gestiona comida, oro, madera y más para crecer.</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-        </div>
-    {% endblock %}
+                <div class="col-md-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">👥 Alianzas estratégicas</h5>
+                            <p class="card-text text-muted">Forma equipos y colabora para dominar el juego.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // Función de ejemplo para actualizar recursos
+        function updateResource(resourceType) {
+            const resourceElement = document.getElementById(`${resourceType}-resource`);
+            let currentValue = parseInt(resourceElement.innerText);
+            resourceElement.innerText = currentValue + 1;  // Incrementar el valor como ejemplo
+        }
+
+        // Función para pasar el turno
+        function passTurn() {
+            alert('¡Turno pasado!');
+            // Aquí podrías añadir una llamada AJAX para actualizar el estado del turno en el servidor.
+        }
+    </script>
+{% endblock %}
