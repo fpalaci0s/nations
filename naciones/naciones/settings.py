@@ -76,15 +76,20 @@ WSGI_APPLICATION = 'naciones.wsgi.application'
 
 import pymysql
 pymysql.install_as_MySQLdb()
-
+PASSWORD="yosoyeltitan"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nacionesDB',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'nationsdb',
+        'USER': 'admin',
+        'PASSWORD': PASSWORD,
+        'HOST': 'basesoluciones.ceyo1zn2frlr.us-east-1.rds.amazonaws.com',
+        'PORT': 3306,
+        'OPTIONS':{
+            'ssl':{'ssl_disabled':True},
+        }
+        }
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

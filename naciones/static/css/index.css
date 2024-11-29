@@ -1,0 +1,21 @@
+body {
+    background-image: url('../img/fondo.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;}
+    
+
+h1, h2, h3, h4, h5, h6, p {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Sombra para mejorar la legibilidad */
+}
+
+.text-primary {
+    color: #007bff; /* Color primario para los encabezados */
+}
+
+.text-muted {
+    color: rgba(255, 255, 255, 0.7); /* Color atenuado para el texto secundario */
+}

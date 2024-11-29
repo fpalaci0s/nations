@@ -5,16 +5,17 @@
 {% endblock %}
 
 {% block contenido %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
     <div class="container mt-5">
         {% if user.is_authenticated %}
             <!-- Encabezado -->
             <div class="row mb-4">
                 <div class="col-12 text-center">
                     <h1 class="display-4 fw-bold text-primary">🌍 Mi Nación</h1>
-                    <p class="lead text-muted">Bienvenido, <strong>{{ user.username }}</strong></p>
+                    <p class="lead text-light">Bienvenido, <strong>{{ user.username }}</strong></p>
                 </div>
             </div>
-
             <!-- Sección de recursos y tiempo -->
             <div class="row g-4">
                 <!-- Recursos -->
@@ -59,7 +60,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Turnos -->
                 <div class="col-md-6">
                     <div class="card shadow border-0">
@@ -79,7 +79,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Modal de gestor de edificios -->
             <div class="modal fade" id="buildingModal" tabindex="-1" aria-labelledby="buildingModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -95,7 +94,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Modal del árbol de tecnología -->
             <div class="modal fade" id="techTreeModal" tabindex="-1" aria-labelledby="techTreeModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -111,7 +109,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Botón de cerrar sesión -->
             <div class="row mt-4">
                 <div class="col-12 text-center">
@@ -133,7 +130,7 @@
                 </div>
                 <div class="col-lg-6 text-center text-lg-start">
                     <h1 class="display-4 fw-bold text-primary">Construye tu Nación</h1>
-                    <p class="lead text-muted mt-3">
+                    <p class="lead text-light mt-3">
                         Únete a un emocionante mundo de estrategia y creatividad. 
                         Desarrolla tu nación, gestiona recursos y compite para ser el mejor líder.
                     </p>
@@ -141,7 +138,7 @@
                         <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4 me-md-2">
                             Iniciar sesión
                         </a>
-                        <a href="{% url 'signup' %}" class="btn btn-outline-secondary btn-lg px-4">
+                        <a href="{% url 'signup' %}" class="btn btn-success text-light btn-lg px-4">
                             Registrarse
                         </a>
                     </div>
@@ -150,7 +147,7 @@
 
             <div class="row mt-5">
                 <div class="col-12 text-center">
-                    <h2 class="fw-bold">Empieza a jugar ya</h2>
+                    <h2 class="fw-bold text-light ">Empieza a jugar ya</h2>
                 </div>
             </div>
             <div class="row mt-4 g-4">
@@ -193,7 +190,7 @@
         // Función para pasar el turno
         function passTurn() {
             alert('¡Turno pasado!');
-            // Aquí podrías añadir una llamada AJAX para actualizar el estado del turno en el servidor.
+            // 
         }
     </script>
 {% endblock %}
